@@ -1,9 +1,8 @@
-from flask import Flask,render_template
 from os import system,environ
-from flask import Response, send_file
-from flask import request
+from flask import *
 from time import sleep
 import requests
+import json,time
 
 app = Flask(__name__)
 system("clear")
@@ -17,6 +16,10 @@ def home(name):
       print(f"Hello {name}, you look.{y} years old")
       return (f"Hello {name}, you look.{y} years old")
       #return "hello"
+      
+@app.route('/ok/<game>', methods=['GET', 'POST'])      
+def ok(game):
+  return jsonify({"key":69,"value":f"{game}","TIME":time.time()}),200
     
 @app.route('/', methods=['GET', 'POST'])
 def index():
